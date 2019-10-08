@@ -1,1 +1,1 @@
-"# hotel-management" 
+Hotel Management Web Application using ASP.NET and Entity Framework
