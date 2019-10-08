@@ -1,0 +1,83 @@
+﻿@model HotelManagementEntity1.Models.Guest
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Guest</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.guestName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.guestName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.guestContact)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.guestContact)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.guestAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.guestAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.guestRoomType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.guestRoomType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.guestQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.guestQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.guestCheckinDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.guestCheckinDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.guestNoOfDaysStay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.guestNoOfDaysStay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Room.roomType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Room.roomType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.guestId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

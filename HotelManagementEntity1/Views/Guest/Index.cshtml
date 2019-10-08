@@ -1,0 +1,84 @@
+﻿@model IEnumerable<HotelManagementEntity1.Models.Guest>
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+@using (@Html.BeginForm("Search", "Guest", FormMethod.Post))
+{
+    @Html.TextBox("Name")
+    <input id="Submit" type="submit" class="btn btn-default " value="Search Guest" />
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Name")
+        </th>
+        <th>
+            @Html.DisplayName("Contact")
+        </th>
+        <th>
+            @Html.DisplayName("Address")
+        </th>
+        <th>
+            @Html.DisplayName("RoomType")
+        </th>
+        <th>
+            @Html.DisplayName("Quantity")
+        </th>
+        <th>
+            @Html.DisplayName("CheckinDate")
+        </th>
+        <th>
+            @Html.DisplayName("No Of Days Stay")
+        </th>
+    @*    <th>
+        @Html.DisplayName(model => model.Room.roomType)
+    </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.guestName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.guestContact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.guestAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Room.roomType)
+                @*        @Html.DisplayFor(modelItem => item.guestRoomType) *@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.guestQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.guestCheckinDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.guestNoOfDaysStay)
+        </td>
+     @*   <td>
+        @Html.DisplayFor(modelItem => item.Room.roomType)
+    </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.guestId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.guestId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.guestId })
+        </td>
+    </tr>
+}
+
+</table>

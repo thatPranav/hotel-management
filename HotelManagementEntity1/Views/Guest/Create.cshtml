@@ -1,0 +1,110 @@
+﻿@model HotelManagementEntity1.Models.Guest
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h2>Create Guest</h2>
+        <hr />
+        @Html.ValidationSummary(true)
+        @*
+    <div class="form-group">
+        @Html.LabelFor(model => model.guestId, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.guestId)
+            @Html.ValidationMessageFor(model => model.guestId)
+        </div>
+    </div>
+
+*@
+        <div class="form-group">
+            @Html.Label("Name", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.guestName)
+                @Html.ValidationMessageFor(model => model.guestName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Contact", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.guestContact)
+                @Html.ValidationMessageFor(model => model.guestContact)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Address", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.guestAddress)
+                @Html.ValidationMessageFor(model => model.guestAddress)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Room Type", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.guestRoomType, new List<SelectListItem>
+                {
+                    new SelectListItem { Text = "Standard", Value = "Standard", Selected=true},
+                    new SelectListItem { Text = "Premium", Value = "Premium"},
+                    new SelectListItem { Text = "Deluxe", Value = "Deluxe"},
+                }, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.guestRoomType)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Quantity", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.guestQuantity)
+                @Html.ValidationMessageFor(model => model.guestQuantity)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Checkin Date", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.guestCheckinDate)
+                @Html.ValidationMessageFor(model => model.guestCheckinDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("No Of Days Stay", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.guestNoOfDaysStay)
+                @Html.ValidationMessageFor(model => model.guestNoOfDaysStay)
+            </div>
+        </div>
+        @*
+    <div class="form-group">
+        @Html.LabelFor(model => model.roomId, "roomId", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("roomId", String.Empty)
+            @Html.ValidationMessageFor(model => model.roomId)
+        </div>
+    </div>
+*@
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

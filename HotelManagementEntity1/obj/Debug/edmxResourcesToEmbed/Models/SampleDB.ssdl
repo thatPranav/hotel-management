@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GuestRoomDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Guest">
+    <Key>
+      <PropertyRef Name="guestId" />
+    </Key>
+    <Property Name="guestId" Type="int" Nullable="false" />
+    <Property Name="guestName" Type="varchar" MaxLength="50" />
+    <Property Name="guestContact" Type="varchar" MaxLength="50" />
+    <Property Name="guestAddress" Type="varchar" MaxLength="50" />
+    <Property Name="guestRoomType" Type="varchar" MaxLength="50" />
+    <Property Name="guestQuantity" Type="int" />
+    <Property Name="guestCheckinDate" Type="smalldatetime" />
+    <Property Name="guestNoOfDaysStay" Type="int" />
+    <Property Name="roomId" Type="int" />
+    <Property Name="guestCost" Type="int" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="roomId" />
+    </Key>
+    <Property Name="roomId" Type="int" Nullable="false" />
+    <Property Name="roomType" Type="varchar" MaxLength="50" />
+    <Property Name="roomNumber" Type="int" />
+    <Property Name="roomPrice" Type="int" />
+  </EntityType>
+  <Association Name="FK__Guest__roomId__1273C1CD">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="Guest" Type="Self.Guest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="roomId" />
+      </Principal>
+      <Dependent Role="Guest">
+        <PropertyRef Name="roomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GuestRoomDBModelStoreContainer">
+    <EntitySet Name="Guest" EntityType="Self.Guest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Guest__roomId__1273C1CD" Association="Self.FK__Guest__roomId__1273C1CD">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="Guest" EntitySet="Guest" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

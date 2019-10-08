@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GuestRoomDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Guest">
+    <Key>
+      <PropertyRef Name="guestId" />
+    </Key>
+    <Property Name="guestId" Type="Int32" Nullable="false" />
+    <Property Name="guestName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="guestContact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="guestAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="guestRoomType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="guestQuantity" Type="Int32" />
+    <Property Name="guestCheckinDate" Type="DateTime" Precision="0" />
+    <Property Name="guestNoOfDaysStay" Type="Int32" />
+    <Property Name="roomId" Type="Int32" />
+    <Property Name="guestCost" Type="Int32" />
+    <NavigationProperty Name="Room" Relationship="Self.FK__Guest__roomId__1273C1CD" FromRole="Guest" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="roomId" />
+    </Key>
+    <Property Name="roomId" Type="Int32" Nullable="false" />
+    <Property Name="roomType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="roomNumber" Type="Int32" />
+    <Property Name="roomPrice" Type="Int32" />
+    <NavigationProperty Name="Guests" Relationship="Self.FK__Guest__roomId__1273C1CD" FromRole="Room" ToRole="Guest" />
+  </EntityType>
+  <Association Name="FK__Guest__roomId__1273C1CD">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="Guest" Type="Self.Guest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="roomId" />
+      </Principal>
+      <Dependent Role="Guest">
+        <PropertyRef Name="roomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GuestRoomDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Guests" EntityType="Self.Guest" />
+    <EntitySet Name="Rooms" EntityType="Self.Room" />
+    <AssociationSet Name="FK__Guest__roomId__1273C1CD" Association="Self.FK__Guest__roomId__1273C1CD">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="Guest" EntitySet="Guests" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

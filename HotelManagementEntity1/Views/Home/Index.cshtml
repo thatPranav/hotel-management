@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<html>
+<head>
+    <title>
+        Hotel Management
+    </title>
+    
+</head>
+<body>
+    <div  style="background-image: url(room-image.jpg);">
+        <div class="jumbotron">
+            <h2>Grand Budapest</h2>
+            <h3>The Best Place To Stay</h3>
+            <p class="lead"></p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <h2></h2>
+                <p>
+
+                </p>
+                <h3> Rooms &raquo;</h3>
+                <ul>
+                   
+                    <li>@Html.ActionLink("Rooms", "Index", "Room")</li>
+
+                    
+                </ul>
+
+            </div>
+@if (User.Identity.Name.Equals("pranav")) { 
+            <div class="col-md-4">
+                <h2></h2>
+                <p></p>
+                <h3> Guests Info &raquo;</h3>
+                <ul>
+
+                    <li>@Html.ActionLink("Guests", "Index", "Guest")</li>
+
+
+                </ul>
+            </div>
+}
+            <div class="col-md-4">
+                <h2></h2>
+                <p></p>
+                <h3> About &raquo;</h3>
+                <ul>
+
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+    
+    
+    

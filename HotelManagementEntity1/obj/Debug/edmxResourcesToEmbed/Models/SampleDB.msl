@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GuestRoomDBModelStoreContainer" CdmEntityContainer="GuestRoomDBEntities1">
+    <EntitySetMapping Name="Guests">
+      <EntityTypeMapping TypeName="GuestRoomDBModel.Guest">
+        <MappingFragment StoreEntitySet="Guest">
+          <ScalarProperty Name="guestId" ColumnName="guestId" />
+          <ScalarProperty Name="guestName" ColumnName="guestName" />
+          <ScalarProperty Name="guestContact" ColumnName="guestContact" />
+          <ScalarProperty Name="guestAddress" ColumnName="guestAddress" />
+          <ScalarProperty Name="guestRoomType" ColumnName="guestRoomType" />
+          <ScalarProperty Name="guestQuantity" ColumnName="guestQuantity" />
+          <ScalarProperty Name="guestCheckinDate" ColumnName="guestCheckinDate" />
+          <ScalarProperty Name="guestNoOfDaysStay" ColumnName="guestNoOfDaysStay" />
+          <ScalarProperty Name="roomId" ColumnName="roomId" />
+          <ScalarProperty Name="guestCost" ColumnName="guestCost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="GuestRoomDBModel.Room">
+        <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="roomId" ColumnName="roomId" />
+          <ScalarProperty Name="roomType" ColumnName="roomType" />
+          <ScalarProperty Name="roomNumber" ColumnName="roomNumber" />
+          <ScalarProperty Name="roomPrice" ColumnName="roomPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

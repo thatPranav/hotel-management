@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GuestRoomDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Guest">
+          <Key>
+            <PropertyRef Name="guestId" />
+          </Key>
+          <Property Name="guestId" Type="int" Nullable="false" />
+          <Property Name="guestName" Type="varchar" MaxLength="50" />
+          <Property Name="guestContact" Type="varchar" MaxLength="50" />
+          <Property Name="guestAddress" Type="varchar" MaxLength="50" />
+          <Property Name="guestRoomType" Type="varchar" MaxLength="50" />
+          <Property Name="guestQuantity" Type="int" />
+          <Property Name="guestCheckinDate" Type="smalldatetime" />
+          <Property Name="guestNoOfDaysStay" Type="int" />
+          <Property Name="roomId" Type="int" />
+          <Property Name="guestCost" Type="int" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="roomId" />
+          </Key>
+          <Property Name="roomId" Type="int" Nullable="false" />
+          <Property Name="roomType" Type="varchar" MaxLength="50" />
+          <Property Name="roomNumber" Type="int" />
+          <Property Name="roomPrice" Type="int" />
+        </EntityType>
+        <Association Name="FK__Guest__roomId__1273C1CD">
+          <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="Guest" Type="Self.Guest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="roomId" />
+            </Principal>
+            <Dependent Role="Guest">
+              <PropertyRef Name="roomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GuestRoomDBModelStoreContainer">
+          <EntitySet Name="Guest" EntityType="Self.Guest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Guest__roomId__1273C1CD" Association="Self.FK__Guest__roomId__1273C1CD">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Guest" EntitySet="Guest" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GuestRoomDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Guest">
+          <Key>
+            <PropertyRef Name="guestId" />
+          </Key>
+          <Property Name="guestId" Type="Int32" Nullable="false" />
+          <Property Name="guestName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="guestContact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="guestAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="guestRoomType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="guestQuantity" Type="Int32" />
+          <Property Name="guestCheckinDate" Type="DateTime" Precision="0" />
+          <Property Name="guestNoOfDaysStay" Type="Int32" />
+          <Property Name="roomId" Type="Int32" />
+          <Property Name="guestCost" Type="Int32" />
+          <NavigationProperty Name="Room" Relationship="Self.FK__Guest__roomId__1273C1CD" FromRole="Guest" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="roomId" />
+          </Key>
+          <Property Name="roomId" Type="Int32" Nullable="false" />
+          <Property Name="roomType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="roomNumber" Type="Int32" />
+          <Property Name="roomPrice" Type="Int32" />
+          <NavigationProperty Name="Guests" Relationship="Self.FK__Guest__roomId__1273C1CD" FromRole="Room" ToRole="Guest" />
+        </EntityType>
+        <Association Name="FK__Guest__roomId__1273C1CD">
+          <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="Guest" Type="Self.Guest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="roomId" />
+            </Principal>
+            <Dependent Role="Guest">
+              <PropertyRef Name="roomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GuestRoomDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Guests" EntityType="Self.Guest" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <AssociationSet Name="FK__Guest__roomId__1273C1CD" Association="Self.FK__Guest__roomId__1273C1CD">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="Guest" EntitySet="Guests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GuestRoomDBModelStoreContainer" CdmEntityContainer="GuestRoomDBEntities1">
+          <EntitySetMapping Name="Guests">
+            <EntityTypeMapping TypeName="GuestRoomDBModel.Guest">
+              <MappingFragment StoreEntitySet="Guest">
+                <ScalarProperty Name="guestId" ColumnName="guestId" />
+                <ScalarProperty Name="guestName" ColumnName="guestName" />
+                <ScalarProperty Name="guestContact" ColumnName="guestContact" />
+                <ScalarProperty Name="guestAddress" ColumnName="guestAddress" />
+                <ScalarProperty Name="guestRoomType" ColumnName="guestRoomType" />
+                <ScalarProperty Name="guestQuantity" ColumnName="guestQuantity" />
+                <ScalarProperty Name="guestCheckinDate" ColumnName="guestCheckinDate" />
+                <ScalarProperty Name="guestNoOfDaysStay" ColumnName="guestNoOfDaysStay" />
+                <ScalarProperty Name="roomId" ColumnName="roomId" />
+                <ScalarProperty Name="guestCost" ColumnName="guestCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="GuestRoomDBModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="roomId" ColumnName="roomId" />
+                <ScalarProperty Name="roomType" ColumnName="roomType" />
+                <ScalarProperty Name="roomNumber" ColumnName="roomNumber" />
+                <ScalarProperty Name="roomPrice" ColumnName="roomPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
